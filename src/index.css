@@ -1,0 +1,68 @@
+:root {
+  --bg-night: #05060f;
+  --bg-panel: #0d0f22;
+  --bg-panel-raised: #151833;
+  --line: rgba(130, 150, 255, 0.14);
+  --line-strong: rgba(130, 150, 255, 0.32);
+  --accent: #4d7cff;
+  --accent-dim: #2d4aa8;
+  --accent-purple: #a855f7;
+  --floodlight: #f3f5ff;
+  --text-secondary: #9aa3d1;
+  --text-muted: #7a83b8;
+  --amber: #ffb020;
+  --danger: #ff4d6d;
+
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-night);
+  color: var(--floodlight);
+  font-family: var(--font-body);
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 15% -10%, rgba(77, 124, 255, 0.16), transparent 40%),
+    radial-gradient(circle at 85% 0%, rgba(168, 85, 247, 0.14), transparent 45%);
+  background-attachment: fixed;
+}
+
+button, input { font-family: var(--font-body); }
+button { cursor: pointer; }
+::selection { background: var(--accent); color: var(--bg-night); }
+
+.scoreboard { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Phase 6: shared premium-UI utilities */
+.card-glass {
+  background: rgba(21, 24, 51, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 24px rgba(0, 0, 0, 0.28);
+}
+
+.hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.hover-lift:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35); }
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.msg-in { animation: fadeSlideUp 0.32s ease-out both; }
+
+.progress-bar-fill { transition: width 0.6s ease, background 0.3s ease; }

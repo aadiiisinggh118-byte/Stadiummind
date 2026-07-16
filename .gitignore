@@ -1,0 +1,11 @@
+node_modules
+dist
+.vercel
+
+# Never commit real secrets — only .env.example (a template) is safe to commit.
+.env
+.env.local
+.env.*.local
+
+.vercel
+.env*
