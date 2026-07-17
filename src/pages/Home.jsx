@@ -2,12 +2,14 @@ import { Link } from 'react-router-dom'
 import MatchHeader from '../components/MatchHeader.jsx'
 import CrowdMap from '../components/CrowdMap.jsx'
 import WaitTimes from '../components/WaitTimes.jsx'
+import GettingHere from '../components/GettingHere.jsx'
 
 export default function Home() {
   return (
     <div style={{ display: 'grid', gap: '1rem' }}>
       <MatchHeader />
       <CrowdMap />
+      <GettingHere />
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
         <WaitTimes />
         <div

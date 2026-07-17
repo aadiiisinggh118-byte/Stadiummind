@@ -5,9 +5,11 @@ chatbot.** Built for Hack2Skill PromptWars **Challenge 4: Smart Stadiums &
 Tournament Operations**.
 
 **Chosen vertical:** Smart Stadiums & Tournament Operations — specifically
-the sub-problems of navigation, crowd management, accessibility, operational
-intelligence, and real-time decision support named in the challenge brief.
-Every feature below traces back to one of those five, not a generic add-on.
+the sub-problems named in the challenge brief: navigation, crowd management,
+accessibility, **transportation**, **sustainability**, multilingual
+assistance, operational intelligence, and real-time decision support. Every
+one of these 8 named areas has a corresponding agent or feature below, not
+just the easier subset.
 
 **Live demo:** see the Deployed Link on the submission form.
 **Headline feature:** `/digital-twin` — simulates 6 minutes of stadium
@@ -104,6 +106,7 @@ flowchart LR
 | Venue Knowledge | `venueKnowledgeAgent.js` | Ground-truth policy lookup so the model never invents venue rules |
 | Operations | `operationsAgent.js` | Reports live service wait times (restrooms, concessions, etc.) |
 | Lost Child | `lostChildAgent.js` | Stages a search (immediate → expanding → venue-wide) based on elapsed time and live crowd density |
+| Transportation & Sustainability | `transportationAgent.js` | Recommends the best arrival mode (shuttle, transit, rideshare, parking) weighing speed against eco-impact, and states the CO2 tradeoff in concrete terms — visible on Command Center's "Getting Here" panel, not just in chat |
 | Simulation | `simulationAgent.js` | Deterministic Digital Twin engine — see below |
 
 Every agent above is a pure function with no LLM call inside it. Gemini's

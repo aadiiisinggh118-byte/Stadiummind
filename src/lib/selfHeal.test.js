@@ -35,4 +35,9 @@ describe('validateArgs', () => {
     expect(validateArgs('remember_fact', { key: 'favoriteColor', value: 'blue' }).valid).toBe(false)
     expect(validateArgs('remember_fact', { key: 'seatBlock' }).valid).toBe(false)
   })
+
+  it('accepts recommend_transport with no required fields', () => {
+    expect(validateArgs('recommend_transport', {}).valid).toBe(true)
+    expect(validateArgs('recommend_transport', { needsAccessible: true }).valid).toBe(true)
+  })
 })

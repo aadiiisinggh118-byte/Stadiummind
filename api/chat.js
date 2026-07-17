@@ -19,6 +19,7 @@ import { assessCrowdRisk } from '../src/lib/agents/crowdAgent.js'
 import { planAccessibleRoute } from '../src/lib/agents/accessibilityAgent.js'
 import { lookupVenuePolicy } from '../src/lib/agents/venueKnowledgeAgent.js'
 import { checkServiceWait } from '../src/lib/agents/operationsAgent.js'
+import { recommendTransportMode, computeSustainabilitySummary } from '../src/lib/agents/transportationAgent.js'
 import { validateArgs } from '../src/lib/selfHeal.js'
 import { checkRateLimit, getClientIp } from './_lib/rateLimit.js'
 import { capString } from './_lib/sanitize.js'
@@ -85,6 +86,17 @@ const TOOLS = [
     },
   },
   {
+    name: 'recommend_transport',
+    description:
+      "Transportation & Sustainability Agent. Recommends the best way to arrive at the venue (shuttle, public transit, rideshare, or parking) based on live wait times/delays and time until kickoff, and reports the eco-impact tradeoff. Use whenever the fan asks how to get to the stadium, about parking, transit, or the most sustainable/eco-friendly option.",
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        needsAccessible: { type: 'BOOLEAN', description: "Whether the fan's transport needs to be accessible" },
+      },
+    },
+  },
+  {
     name: 'remember_fact',
     description:
       "Saves a durable fact about this fan for the rest of their visit, so they never have to repeat it. Call this whenever the fan states their seat block/section, an accessibility or mobility need, or a language preference — even if you're also calling another tool in the same turn.",
@@ -111,6 +123,11 @@ function runTool(name, args) {
       return lookupVenuePolicy(args.topic)
     case 'check_service_wait':
       return checkServiceWait(args.serviceId)
+    case 'recommend_transport': {
+      const transport = recommendTransportMode(args)
+      const sustainability = computeSustainabilitySummary()
+      return { ...transport, sustainability }
+    }
     case 'remember_fact':
       return { saved: true, key: args.key, value: args.value }
     default:

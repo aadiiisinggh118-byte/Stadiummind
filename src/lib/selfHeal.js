@@ -22,6 +22,10 @@ const TOOL_SCHEMAS = {
     required: [],
     enums: { serviceId: ['concessions', 'restrooms', 'merch', 'accessible-seating'] },
   },
+  recommend_transport: {
+    required: [],
+    enums: {},
+  },
   remember_fact: {
     required: ['key', 'value'],
     enums: { key: ['seatBlock', 'accessibilityNeed', 'language'] },

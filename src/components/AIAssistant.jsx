@@ -11,6 +11,7 @@ const AGENT_LABELS = {
   plan_accessible_route: 'Accessibility Agent',
   lookup_venue_policy: 'Venue Knowledge Agent',
   check_service_wait: 'Operations Agent',
+  recommend_transport: 'Transportation Agent',
   remember_fact: 'Memory',
 }
 
@@ -27,6 +28,8 @@ function summarizeStep(step) {
       return `Looked up ${input?.topic || 'venue policy'}`
     case 'check_service_wait':
       return input?.serviceId ? `Checked wait time for ${input.serviceId}` : 'Checked all service wait times'
+    case 'recommend_transport':
+      return `Recommended ${output.recommendation} (${Math.round((output.confidence || 0) * 100)}% confidence)`
     case 'remember_fact':
       return `Saved ${output.key}: ${output.value}`
     default:

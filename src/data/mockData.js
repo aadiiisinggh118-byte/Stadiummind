@@ -54,3 +54,15 @@ export function recommendGate() {
   return sorted[0]
 }
 
+// Simulated arrival-mode feed. CO2 figures are illustrative estimates for a
+// ~10km trip to the venue (rideshare/parking assume solo occupancy), not
+// measured real-world data — kept simple and clearly labeled rather than
+// presented as scientifically precise, consistent with how the rest of the
+// app treats mock data.
+export const transportOptions = [
+  { id: 'shuttle', label: 'Free venue shuttle', waitMin: 8, delayMin: 0, co2PerPersonKg: 0.6, accessible: true },
+  { id: 'publicTransit', label: 'Public transit (metro)', waitMin: 5, delayMin: 0, co2PerPersonKg: 0.5, accessible: true },
+  { id: 'rideshare', label: 'Rideshare', waitMin: 12, delayMin: 0, co2PerPersonKg: 4.6, accessible: true },
+  { id: 'parking', label: 'Private car / parking', waitMin: 15, delayMin: 0, co2PerPersonKg: 8.9, accessible: true, lotFillPct: 72 },
+]
+
